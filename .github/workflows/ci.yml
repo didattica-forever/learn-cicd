@@ -1,22 +1,32 @@
-name: ci
+name: ci # assigns a human-readable name to the workflow
 
+# EVENT: The events that trigger the workflow
+# The on key specifies when the workflow should run.
+# In our case, we want to run the workflow when a pull request is opened to the main branch.
 on:
-  pull_request:
+  pull_request: # events: [push, pull_request]
     branches: [main]
 
-jobs:
-  tests:
+jobs: # jobs are the tasks that the workflow will run
+  tests: # Job numero 1
     name: Tests
-    runs-on: ubuntu-latest
+    # https://docs.github.com/en/actions/concepts/runners/github-hosted-runners
+    runs-on: ubuntu-latest # The runs-on key specifies the type of runner to use
 
+    # Each job has a list of steps that make up the job.
     steps:
-      - name: Check out code
+      - name: Check out code # Estrae il codice utilizzando l'azione di estrazione predefinita per clonare il repository nel runner
         uses: actions/checkout@v4
 
-      - name: Set up Go
+      - name: Set up Go # https://github.com/actions/setup-go
         uses: actions/setup-go@v5
         with:
           go-version: "1.25.1"
 
-      - name: Force Failure
+      - name: Echo Go version
+        # The run key specifies the command to run.
+        # The run key is used to run arbitrary command-line commands in the runner.
         run: go version
+
+      - name: Run tests
+        run: go test -cover -v ./...
