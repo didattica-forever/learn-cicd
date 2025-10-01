@@ -23,10 +23,5 @@ jobs: # jobs are the tasks that the workflow will run
         with:
           go-version: "1.25.1"
 
-      - name: Echo Go version
-        # The run key specifies the command to run.
-        # The run key is used to run arbitrary command-line commands in the runner.
-        run: go version
-
       - name: Run tests
         run: go test -cover -v ./...
