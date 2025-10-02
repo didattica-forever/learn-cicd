@@ -27,7 +27,7 @@ jobs: # jobs are the tasks that the workflow will run
         run: go test -cover -v ./...
 
   Style: # Job numero 2
-    name: Styles
+    name: Style
     runs-on: ubuntu-latest # The runs-on key specifies the type of runner to use
     steps:
       - name: Check out code # Estrae il codice utilizzando l'azione di estrazione predefinita per clonare il repository nel runner
@@ -38,5 +38,5 @@ jobs: # jobs are the tasks that the workflow will run
         with:
           go-version: "1.25.1"
 
-      - name: Check Style
+      - name: Style
         run: test -z $(go fmt ./...)
