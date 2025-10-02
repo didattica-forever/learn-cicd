@@ -25,3 +25,18 @@ jobs: # jobs are the tasks that the workflow will run
 
       - name: Run tests
         run: go test -cover -v ./...
+
+  Style: # Job numero 2
+    name: Styles
+    runs-on: ubuntu-latest # The runs-on key specifies the type of runner to use
+    steps:
+      - name: Check out code # Estrae il codice utilizzando l'azione di estrazione predefinita per clonare il repository nel runner
+        uses: actions/checkout@v4
+
+      - name: Set up Go # https://github.com/actions/setup-go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.25.1"
+
+      - name: Check Style
+        run: test -z $(go fmt ./...)
