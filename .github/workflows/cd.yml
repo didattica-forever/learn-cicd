@@ -1,7 +1,7 @@
-name: cd # assigns a human-readable name to the workflow
+name: cd
 
 on:
-  push: #  trigger on push into the main branch.
+  push:
     branches: [main]
 
 jobs:
