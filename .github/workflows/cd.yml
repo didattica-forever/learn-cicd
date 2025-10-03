@@ -1,7 +1,10 @@
+name: cd # assigns a human-readable name to the workflow
+
 on:
   push: #  trigger on push into the main branch.
     branches: [main]
 
+jobs:
   Deploy:
     name: Deploy
     runs-on: ubuntu-latest
